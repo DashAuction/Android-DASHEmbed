@@ -25,7 +25,7 @@ public class DASH {
         this.userEmail = email;
     }
 
-    public Fragment dashFragement() {
+    public Fragment dashFragment() {
         Fragment dashFragment = DASHFragment.newInstance(config);
         return dashFragment;
     }

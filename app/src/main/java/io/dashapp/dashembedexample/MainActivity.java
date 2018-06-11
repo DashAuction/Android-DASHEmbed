@@ -3,10 +3,8 @@ package io.dashapp.dashembedexample;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 
@@ -33,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pushDASHFragment() {
-        Fragment fragment = DASH.getInstance().dashFragement();
+        Fragment fragment = DASH.getInstance().dashFragment();
         FragmentManager fragmentManager = getFragmentManager();
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
