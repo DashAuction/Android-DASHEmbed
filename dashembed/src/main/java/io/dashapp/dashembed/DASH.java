@@ -1,7 +1,6 @@
 package io.dashapp.dashembed;
 
 import android.app.Fragment;
-import android.view.Choreographer;
 
 public class DASH {
 
@@ -28,6 +27,6 @@ public class DASH {
 
     public Fragment dashFragement() {
         Fragment dashFragment = DASHFragment.newInstance(config);
-        return dashFragment
+        return dashFragment;
     }
 }

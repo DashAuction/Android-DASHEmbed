@@ -8,6 +8,12 @@ public class Config implements Parcelable {
     public String distributorIdentifier;
     public String applicationIdentifier;
 
+    public Config(String teamIdentifier, String distributorIdentifier, String applicationIdentifier) {
+        this.teamIdentifier = teamIdentifier;
+        this.distributorIdentifier = distributorIdentifier;
+        this.applicationIdentifier = applicationIdentifier;
+    }
+
     protected Config(Parcel in) {
         teamIdentifier = in.readString();
         distributorIdentifier = in.readString();
