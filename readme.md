@@ -6,9 +6,18 @@ This library provides an easy way to embed the DASH mobile experience into an An
 
 ## Usage
 
+### Add required permissions
+
+Fine location is used for future location based features.
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+```
+
 ### Create a Config
 
-Create a Config. This is used to initialize the DASH library with needed information.
+Create a Config. This is used to initialize the DASH library with needeåd information.
 
 ```java
 Config config = new Config("fcdallas", "hopscotch", "io.dashapp.dashembedexample");
