@@ -36,4 +36,4 @@ fragmentTransaction
 fragmentManager.executePendingTransactions();
 ```
 
-Check out the [Current Documentation](https://bitbucket.org/dashdev/dash-embed-ios/raw/21b09d1d6620a0594e88aea498cfa46a4717b43b/Documentation/DASHAuctions_V1.pdf)
+Check out the [Current Documentation](https://bitbucket.org/dashdev/dash-embed-android/raw/7343d6062f5d4b4508be739a56ca81c82adc574c/Documentation/DASHAuctions_V1.pdf)
