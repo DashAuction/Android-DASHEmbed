@@ -7,7 +7,7 @@ public class DASH {
     private static DASH INSTANCE = null;
     private Config config;
     private String userEmail;
-    private String pushSenderID;
+    private String pushToken;
 
     private DASH() {};
 
@@ -26,12 +26,12 @@ public class DASH {
         this.userEmail = email;
     }
 
-    public void setPushSenderID(String senderID) {
-        this.pushSenderID = senderID;
+    public void setPushToken(String token) {
+        this.pushToken = token;
     }
 
     public Fragment dashFragment() {
-        UserInfo userInfo = new UserInfo(pushSenderID, userEmail);
+        UserInfo userInfo = new UserInfo(pushToken, userEmail);
         Fragment dashFragment = DASHFragment.newInstance(config, userInfo);
         return dashFragment;
     }
