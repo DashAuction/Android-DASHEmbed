@@ -18,8 +18,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Setup the DASH instance
         Config config = new Config("fcdallas", "hopscotch", "io.dashapp.dashembedexample");
         DASH.getInstance().startWithConfig(config);
+
+        //Set an email
+        DASH.getInstance().setUserEmail("ryan@dashapp.io");
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {

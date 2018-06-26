@@ -1,5 +1,6 @@
 package io.dashapp.dashembed;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,9 +19,18 @@ import android.webkit.WebView;
  */
 public class DASHFragment extends Fragment {
     private static final String ARG_CONFIG = "config";
-    private static final String BASE_URL = "https://web.dashapp.io/auctions/";
+    private static final String ARG_USER_INFO = "userInfo";
+    private static final String URL_SCHEME = "https";
+    private static final String URL_AUTHORITY = "web.dashapp.io";
+    private static final String URL_PATH_AUCTIONS = "auctions";
+
+    private static final String QUERY_DISTRIBUTOR = "distributorIdentifier";
+    private static final String QUERY_APPLICATION = "applicationIdentifier";
+    private static final String QUERY_EMAIL = "userEmail";
+    private static final String QUERY_PUSH = "pushToken";
 
     private Config config;
+    private UserInfo userInfo;
     private WebView webView;
 
     public DASHFragment() {
@@ -32,12 +42,14 @@ public class DASHFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param config The config to use for initializing the fragment.
+     * @param userInfo The user information used by the fragment.
      * @return A new instance of fragment DASHFragment.
      */
-    public static DASHFragment newInstance(Config config) {
+    public static DASHFragment newInstance(Config config, UserInfo userInfo) {
         DASHFragment fragment = new DASHFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_CONFIG, config);
+        args.putParcelable(ARG_USER_INFO, userInfo);
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,6 +59,7 @@ public class DASHFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             config = getArguments().getParcelable(ARG_CONFIG);
+            userInfo = getArguments().getParcelable(ARG_USER_INFO);
         }
     }
 
@@ -70,7 +83,22 @@ public class DASHFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        String fullURL = BASE_URL + config.teamIdentifier;
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme(URL_SCHEME)
+                .authority(URL_AUTHORITY)
+                .appendPath(URL_PATH_AUCTIONS)
+                .appendPath(config.teamIdentifier)
+                .appendQueryParameter(QUERY_DISTRIBUTOR, config.distributorIdentifier)
+                .appendQueryParameter(QUERY_APPLICATION, config.applicationIdentifier);
+
+        if (userInfo.userEmail != null) {
+            builder.appendQueryParameter(QUERY_EMAIL, userInfo.userEmail);
+        }
+
+        if (userInfo.pushTokenString != null) {
+            builder.appendQueryParameter(QUERY_PUSH, userInfo.pushTokenString);
+        }
+        String fullURL = builder.build().toString();
         webView.loadUrl(fullURL);
     }
 }
