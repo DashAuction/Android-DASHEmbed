@@ -4,20 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Config implements Parcelable {
-    public String teamIdentifier;
-    public String distributorIdentifier;
-    public String applicationIdentifier;
+    public String appId;
 
-    public Config(String teamIdentifier, String distributorIdentifier, String applicationIdentifier) {
-        this.teamIdentifier = teamIdentifier;
-        this.distributorIdentifier = distributorIdentifier;
-        this.applicationIdentifier = applicationIdentifier;
+    public Config(String appId) {
+        this.appId = appId;
     }
 
     protected Config(Parcel in) {
-        teamIdentifier = in.readString();
-        distributorIdentifier = in.readString();
-        applicationIdentifier = in.readString();
+        appId = in.readString();
     }
 
     public static final Creator<Config> CREATOR = new Creator<Config>() {
@@ -39,8 +33,6 @@ public class Config implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(teamIdentifier);
-        parcel.writeString(distributorIdentifier);
-        parcel.writeString(applicationIdentifier);
+        parcel.writeString(appId);
     }
 }

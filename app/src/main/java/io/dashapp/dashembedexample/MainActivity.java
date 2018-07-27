@@ -19,11 +19,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Setup the DASH instance
-        Config config = new Config("fcdallas", "hopscotch", "io.dashapp.dashembedexample");
-        DASH.getInstance().startWithConfig(config);
+        Config config = new Config("55e1bb99a1a135543f692bad");
+        DASH.getInstance().startWithConfig(this, config);
 
         //Set an email
         DASH.getInstance().setUserEmail("ryan@dashapp.io");
+
+        //** See ExampleInstanceIdService for push handling **
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {

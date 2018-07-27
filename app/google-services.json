@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "941414560024",
+    "firebase_url": "https://dashembed-android.firebaseio.com",
+    "project_id": "dashembed-android",
+    "storage_bucket": "dashembed-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941414560024:android:ba3f3650e9f05980",
+        "android_client_info": {
+          "package_name": "io.dashapp.dashembedexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "941414560024-94kvvu9tefhnhum7g7573eq4ada7rvlh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.dashapp.dashembedexample",
+            "certificate_hash": "f3d0c9cced4504f60a23fe1c101407957c92145e"
+          }
+        },
+        {
+          "client_id": "941414560024-99r5nl7h43p0f3llpsqa23aokghmhllo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-9T0SULJq_4stKL6eUa4VUcGeQ1SZcVY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "941414560024-99r5nl7h43p0f3llpsqa23aokghmhllo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

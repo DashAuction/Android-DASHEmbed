@@ -2,9 +2,8 @@ package io.dashapp.dashembed;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +20,14 @@ public class DASHFragment extends Fragment {
     private static final String ARG_CONFIG = "config";
     private static final String ARG_USER_INFO = "userInfo";
     private static final String URL_SCHEME = "https";
-    private static final String URL_AUTHORITY = "web.dashapp.io";
-    private static final String URL_PATH_AUCTIONS = "auctions";
+    private static final String URL_AUTHORITY = "dev-web.dashapp.io";
+    private static final String URL_PATH_APP = "app";
 
-    private static final String QUERY_DISTRIBUTOR = "distributorIdentifier";
-    private static final String QUERY_APPLICATION = "applicationIdentifier";
-    private static final String QUERY_EMAIL = "userEmail";
-    private static final String QUERY_PUSH = "pushToken";
+    private static final String QUERY_PLATFORM = "platformId";
+    private static final String QUERY_VALUE_ANDROID = "android";
+    private static final String QUERY_APPLICATION = "appId";
+    private static final String QUERY_EMAIL = "email";
+    private static final String QUERY_PUSH = "pushId";
 
     private Config config;
     private UserInfo userInfo;
@@ -71,7 +71,7 @@ public class DASHFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         webView = view.findViewById(R.id.webView);
 
@@ -86,10 +86,9 @@ public class DASHFragment extends Fragment {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(URL_SCHEME)
                 .authority(URL_AUTHORITY)
-                .appendPath(URL_PATH_AUCTIONS)
-                .appendPath(config.teamIdentifier)
-                .appendQueryParameter(QUERY_DISTRIBUTOR, config.distributorIdentifier)
-                .appendQueryParameter(QUERY_APPLICATION, config.applicationIdentifier);
+                .appendPath(URL_PATH_APP)
+                .appendQueryParameter(QUERY_APPLICATION, config.appId)
+                .appendQueryParameter(QUERY_PLATFORM, QUERY_VALUE_ANDROID);
 
         if (userInfo.userEmail != null) {
             builder.appendQueryParameter(QUERY_EMAIL, userInfo.userEmail);
@@ -99,6 +98,7 @@ public class DASHFragment extends Fragment {
             builder.appendQueryParameter(QUERY_PUSH, userInfo.pushTokenString);
         }
         String fullURL = builder.build().toString();
+        Log.d("DASHFragment", fullURL);
         webView.loadUrl(fullURL);
     }
 }
