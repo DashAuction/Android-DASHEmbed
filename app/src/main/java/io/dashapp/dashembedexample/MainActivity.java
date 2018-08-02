@@ -3,10 +3,9 @@ package io.dashapp.dashembedexample;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import io.dashapp.dashembed.Config;
 import io.dashapp.dashembed.DASH;
@@ -26,17 +25,29 @@ public class MainActivity extends AppCompatActivity {
         DASH.getInstance().setUserEmail("ryan@dashapp.io");
 
         //** See ExampleInstanceIdService for push handling **
+        //Check for push extras on the intent
+        Intent intent = getIntent();
+        handleIntent(intent);
 
-        Button button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                pushDASHFragment();
-            }
-        });
+        embedDASHFragment();
     }
 
-    public void pushDASHFragment() {
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
+            if (DASH.getInstance().canHandlePushIntentExtras(extras)) {
+                DASH.getInstance().setPushIntentExtras(extras);
+            }
+        }
+    }
+
+    private void embedDASHFragment() {
         Fragment fragment = DASH.getInstance().dashFragment();
         FragmentManager fragmentManager = getFragmentManager();
 
@@ -44,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentTransaction
                 .replace(R.id.main_panel, fragment, "DASHFragment")
-                .addToBackStack("DASHFragment")
                 .commit();
         fragmentManager.executePendingTransactions();
     }
