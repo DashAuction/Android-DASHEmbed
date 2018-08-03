@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         DASH.getInstance().startWithConfig(this, config);
 
         //Set an email
-        DASH.getInstance().setUserEmail("ryan@dashapp.io");
+        String email = "test@email.com";
+        DASH.getInstance().setUserEmail(email);
 
         //** See ExampleInstanceIdService for push handling **
         //Check for push extras on the intent
