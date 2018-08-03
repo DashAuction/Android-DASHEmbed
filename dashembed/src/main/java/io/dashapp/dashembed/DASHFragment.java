@@ -1,14 +1,19 @@
 package io.dashapp.dashembed;
 
+import android.annotation.TargetApi;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +44,7 @@ public class DASHFragment extends Fragment {
     private UserInfo userInfo;
     private String pushExtras;
     private WebView webView;
+    private DASHFragmentEventListener eventListener;
 
     public DASHFragment() {
         // Required empty public constructor
@@ -77,6 +83,11 @@ public class DASHFragment extends Fragment {
         }
     }
 
+    /// Sets an event listener. Currently broadcasts errors.
+    public void setEventListener(DASHFragmentEventListener eventListener) {
+        this.eventListener = eventListener;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +113,30 @@ public class DASHFragment extends Fragment {
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
+
+        final DASHFragment currentFragment = this;
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            @TargetApi(Build.VERSION_CODES.M)
+            public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+                super.onReceivedError(view, request, error);
+                final Uri uri = request.getUrl();
+                handleError(view, error.getErrorCode(), error.getDescription().toString(), uri);
+            }
+
+            @SuppressWarnings("deprecation")
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                super.onReceivedError(view, errorCode, description, failingUrl);
+                final Uri uri = Uri.parse(failingUrl);
+                handleError(view, errorCode, description, uri);
+            }
+
+            private void handleError(WebView view, int errorCode, String description, final Uri uri) {
+                if (eventListener != null) {
+                    eventListener.onReceivedError(currentFragment, errorCode, description);
+                }
+            }
+        });
     }
 
     @Override
@@ -137,7 +172,6 @@ public class DASHFragment extends Fragment {
                     String key = keyIterator.next();
                     String value = dashJSONObject.getString(key);
                     if (value != null) {
-                        Log.d("PUSH_EXTRAS", "Adding key: " + key + " for value: " + value);
                         builder.appendQueryParameter(key, value);
                     }
                 }
