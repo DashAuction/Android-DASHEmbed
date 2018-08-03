@@ -92,7 +92,11 @@ public class DASH {
     private void cacheStringForKey(String string, String key) {
         SharedPreferences sharedPref = context.getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString(key, string);
+        if (string != null) {
+            editor.putString(key, string);
+        } else {
+            editor.remove(key);
+        }
         editor.apply();
     }
 

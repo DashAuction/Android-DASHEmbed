@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void handleIntent(Intent intent) {
+        //If we're reusing activities, handle the intent here, it will reload the DASH interface
         if (intent != null) {
             Bundle extras = intent.getExtras();
             if (DASH.getInstance().canHandlePushIntentExtras(extras)) {
