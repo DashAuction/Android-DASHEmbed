@@ -31,7 +31,8 @@ public class DASHFragment extends Fragment {
     private static final String ARG_USER_INFO = "userInfo";
     private static final String ARG_PUSH_EXTRAS = "pushExtras";
     private static final String URL_SCHEME = "https";
-    private static final String URL_AUTHORITY = "dev-web.dashapp.io";
+    private static final String URL_AUTHORITY_DEVELOPMENT = "dev-web.dashapp.io";
+    private static final String URL_AUTHORITY = "web.dashapp.io";
     private static final String URL_PATH_APP = "app";
 
     private static final String QUERY_PLATFORM = "platformId";
@@ -147,7 +148,8 @@ public class DASHFragment extends Fragment {
 
     private void loadWebView() {
         Uri.Builder builder = new Uri.Builder();
-        builder.scheme(URL_SCHEME)
+        String scheme = config.useDevelopmentServers? URL_AUTHORITY_DEVELOPMENT : URL_AUTHORITY;
+        builder.scheme(scheme)
                 .authority(URL_AUTHORITY)
                 .appendPath(URL_PATH_APP)
                 .appendQueryParameter(QUERY_APPLICATION, config.appId)

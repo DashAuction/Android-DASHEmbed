@@ -5,13 +5,33 @@ import android.os.Parcelable;
 
 public class Config implements Parcelable {
     public String appId;
+    public Boolean useDevelopmentServers;
 
     public Config(String appId) {
         this.appId = appId;
+        this.useDevelopmentServers = false;
+    }
+
+    public Config(String appId, Boolean useDevelopmentServers) {
+        this.appId = appId;
+        this.useDevelopmentServers = useDevelopmentServers;
     }
 
     protected Config(Parcel in) {
         appId = in.readString();
+        byte tmpUseDevelopmentServers = in.readByte();
+        useDevelopmentServers = tmpUseDevelopmentServers == 0 ? null : tmpUseDevelopmentServers == 1;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(appId);
+        dest.writeByte((byte) (useDevelopmentServers == null ? 0 : useDevelopmentServers ? 1 : 2));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Config> CREATOR = new Creator<Config>() {
@@ -25,14 +45,4 @@ public class Config implements Parcelable {
             return new Config[size];
         }
     };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(appId);
-    }
 }
