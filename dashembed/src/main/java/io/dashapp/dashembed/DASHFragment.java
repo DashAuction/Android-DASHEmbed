@@ -148,9 +148,9 @@ public class DASHFragment extends Fragment {
 
     private void loadWebView() {
         Uri.Builder builder = new Uri.Builder();
-        String scheme = config.useDevelopmentServers? URL_AUTHORITY_DEVELOPMENT : URL_AUTHORITY;
-        builder.scheme(scheme)
-                .authority(URL_AUTHORITY)
+        String authroity = config.useDevelopmentServers? URL_AUTHORITY_DEVELOPMENT : URL_AUTHORITY;
+        builder.scheme(URL_SCHEME)
+                .authority(authroity)
                 .appendPath(URL_PATH_APP)
                 .appendQueryParameter(QUERY_APPLICATION, config.appId)
                 .appendQueryParameter(QUERY_PLATFORM, QUERY_VALUE_ANDROID);
