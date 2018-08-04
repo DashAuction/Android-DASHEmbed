@@ -129,4 +129,4 @@ fragmentTransaction
 fragmentManager.executePendingTransactions();
 ```
 
-Check out the [Current Documentation](https://bitbucket.org/dashdev/dash-embed-android/raw/7343d6062f5d4b4508be739a56ca81c82adc574c/Documentation/DASHAuctions_V1.pdf)
+Check out the [Current Documentation](https://github.com/DashAuction/Android-DASHEmbed/raw/master/Documentation/DASHAuctions_V1.pdf)
