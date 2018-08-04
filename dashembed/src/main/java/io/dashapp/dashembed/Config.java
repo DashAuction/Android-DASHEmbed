@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Config implements Parcelable {
+    // A unique identifier for the DASH Foundation (provided by DASH)
     public String appId;
     public Boolean useDevelopmentServers;
 

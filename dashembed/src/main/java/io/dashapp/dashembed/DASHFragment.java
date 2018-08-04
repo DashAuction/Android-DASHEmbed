@@ -75,7 +75,11 @@ public class DASHFragment extends Fragment {
         reloadInterface(true);
     }
 
-    /// Refreshes the current page. If startFromBeginning is true, the interface is reloaded to the beginning state.
+    /**
+     * Refreshes the current page. If startFromBeginning is true, the interface is reloaded to the beginning state.
+     *
+     * @param startFromBeginning Whether the interface should be reloaded to the beginning state.
+     */
     public void reloadInterface(boolean startFromBeginning) {
         if (startFromBeginning) {
             loadWebView();
@@ -84,7 +88,12 @@ public class DASHFragment extends Fragment {
         }
     }
 
-    /// Sets an event listener. Currently broadcasts errors.
+    /**
+     * Used to set an event listener on the DASH fragment.
+     * Currently broadcasts errors
+     *
+     * @param eventListener An event listener
+     */
     public void setEventListener(DASHFragmentEventListener eventListener) {
         this.eventListener = eventListener;
     }

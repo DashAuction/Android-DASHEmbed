@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This library provides an easy way to embed the DASH mobile experience into an Android application though a fragment.
+This library provides an easy way to embed the DASH mobile experience into an Android application through a fragment. For more information check out [DASH](http://www.dashapp.io)
 
 ## Usage
 
@@ -15,9 +15,13 @@ Fine location is used for future location based features.
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
+##### To enable push notification functionality
+
+We will need your Android FCM (FirebaseCloudMessaging) API Key.
+
 ### Create a Config
 
-Create a Config. This is used to initialize the DASH library with needeåd information.
+Create a Config. This is used to initialize the DASH library with needed information.
 
 ```java
 Config config = new Config("55e1bb99a1a135543f692bad");
