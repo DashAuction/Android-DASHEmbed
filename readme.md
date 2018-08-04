@@ -4,6 +4,22 @@
 
 This library provides an easy way to embed the DASH mobile experience into an Android application through a fragment. For more information check out [DASH](http://www.dashapp.io)
 
+## Installation
+
+Add DASHEmbed to your build.gradle file
+
+```groovy
+implementation 'io.dashapp.dashembed:dashembed:1.0.0@aar'
+```
+
+If you get an error, we might not be in the jcenter repository yet, go ahead and add our repository.
+
+```groovy
+maven {
+    url "https://dl.bintray.com/dashdeveloper/maven"
+}
+```
+
 ## Usage
 
 ### Add required permissions
