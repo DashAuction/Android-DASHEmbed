@@ -31,3 +31,33 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
+
+ext {
+
+    //For bintray and jcenter distribution
+    bintrayRepo = 'maven'
+    bintrayName = 'dashembed'
+
+    publishedGroupId = 'io.dashapp.dashembed'
+    libraryName = 'DASHEmbed'
+    artifact = 'dashembed'
+
+    libraryDescription = 'An easy way to embed DASH into an Android app'
+
+    siteUrl = 'https://github.com/DashAuction/Android-DASHEmbed'
+    gitUrl = 'https://github.com/DashAuction/Android-DASHEmbed.git'
+
+    libraryVersion = '1.0.0'
+
+    developerId = 'dashdeveloper'
+    developerName = 'DASH Developer'
+    developerEmail = 'developer@dashapp.io'
+    organization = 'dashdeveloper'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+}
+//These two remote files contain Bintray configuration as described above.
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
