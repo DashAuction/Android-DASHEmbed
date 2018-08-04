@@ -8,7 +8,7 @@ This library provides an easy way to embed the DASH mobile experience into an An
 
 ### Add required permissions
 
-Fine location is used for future location based features.
+##### Fine location is used for future location based features.
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -17,7 +17,7 @@ Fine location is used for future location based features.
 
 ##### To enable push notification functionality
 
-We will need your Android FCM (FirebaseCloudMessaging) API Key.
+We will need your Android FCM (Firebase Cloud Messaging) API Key.
 
 ### Create a Config
 
