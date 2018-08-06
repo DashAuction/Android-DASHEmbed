@@ -54,6 +54,7 @@ if (isDebug) {
 } else {
   config = Config("APP_ID");
 }
+```
 
 ### Initialize the DASH library
 
