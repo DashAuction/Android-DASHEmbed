@@ -35,13 +35,26 @@ maven {
 
 We will need your Android FCM (Firebase Cloud Messaging) API Key.
 
+After receiving the push assets above, we will provide you with an App ID to use in the app.
+
 ### Create a Config
 
 Create a Config. This is used to initialize the DASH library with needed information.
 
 ```java
-Config config = new Config("55e1bb99a1a135543f692bad");
+Config config = new Config("APP_ID");
 ```
+
+A second initializer allow you to use the DASH development servers to test.
+
+```java
+Config config;
+if (isDebug) {
+  config = Config("APP_ID", true);
+} else {
+  config = Config("APP_ID");
+}
+
 ### Initialize the DASH library
 
 Initialize the library with a context and the config.
